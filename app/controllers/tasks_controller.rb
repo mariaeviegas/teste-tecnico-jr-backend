@@ -13,6 +13,16 @@ class TasksController < ApplicationController
     render json: task_with_links(@task)
   end
 
+  # GET /tasks/search
+  def search_by_title
+    if params[:title].present?
+      @tasks = Task.where("titulo LIKE ?", "%#{params[:title]}%")
+      render json: @tasks.map { |task| task_with_links(task) }
+    else
+      render json: { error: "Title parameter is required" }, status: :bad_request
+    end
+  end
+
   # POST /tasks
   def create
     @task = Task.new(task_params)
