@@ -22,7 +22,6 @@ Este é o backend de um projeto de gerenciamento de tarefas inspirado no quadro 
    ```sh
    git clone https://github.com/mariaeviegas/teste-tecnico-jr-backend.git
    cd teste-tecnico-jr-backend
-   cd task_manager
 
 2. **Instale as dependências**
    
@@ -34,9 +33,10 @@ Este é o backend de um projeto de gerenciamento de tarefas inspirado no quadro 
 
 3. **Configure o banco de dados**
    
-   - Crie o banco de dados e execute as migrações.
+   - Limpe o banco de dados atual, crie novamente e execute as migrações.
      
    ```sh
+   rails db:drop
    rails db:create
    rails db:migrate
 
@@ -46,6 +46,6 @@ Este é o backend de um projeto de gerenciamento de tarefas inspirado no quadro 
 
 Backend pronto para ser consumido :) Para mais informações sobre como utilizar a interface, consulte as instruções no repositório do frontend abaixo:
 
-[https://github.com/mariaeviegas/teste-tecnico-jr-frontend.git](#)
+[https://github.com/mariaeviegas/teste-tecnico-jr-frontend.git](https://github.com/mariaeviegas/teste-tecnico-jr-frontend.git)
 
 
