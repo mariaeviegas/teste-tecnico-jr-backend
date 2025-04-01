@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titulo: MyString
+  descricao: MyString
+  status: MyString
+  prazo: 2025-04-01
+
+two:
+  titulo: MyString
+  descricao: MyString
+  status: MyString
+  prazo: 2025-04-01
