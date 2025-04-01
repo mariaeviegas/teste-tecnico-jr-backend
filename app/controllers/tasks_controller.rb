@@ -66,6 +66,7 @@ class TasksController < ApplicationController
         descricao: task.descricao,
         status: task.status,
         prazo: task.prazo,
+        created_at: task.created_at,
         links: [
           { rel: "self", method: "GET", href: task_url(task) },
           { rel: "update", method: "PATCH", href: task_url(task) },
