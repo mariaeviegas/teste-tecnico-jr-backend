@@ -5,12 +5,12 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
 
-    render json: @tasks
+    render json: @tasks.map { |task| task_with_links(task) }
   end
 
   # GET /tasks/1
   def show
-    render json: @task
+    render json: task_with_links(@task)
   end
 
   # POST /tasks
@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      render json: @task, status: :created, location: @task
+      render json: task_with_links(@task), status: :created, location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      render json: @task
+      render json: task_with_links(@task)
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -47,5 +47,21 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.expect(task: [ :titulo, :descricao, :status, :prazo ])
+    end
+
+    def task_with_links(task)
+      {
+        id: task.id,
+        titulo: task.titulo,
+        descricao: task.descricao,
+        status: task.status,
+        prazo: task.prazo,
+        links: [
+          { rel: "self", method: "GET", href: task_url(task) },
+          { rel: "update", method: "PATCH", href: task_url(task) },
+          { rel: "delete", method: "DELETE", href: task_url(task) },
+          { rel: "all_tasks", method: "GET", href: tasks_url }
+        ]
+      }
     end
 end
