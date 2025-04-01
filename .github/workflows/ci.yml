@@ -49,6 +49,9 @@ jobs:
       - name: Instalar dependências do Bundler
         run: bundle install --jobs 4 --retry 3
 
+      - name: Set permissions for bin scripts
+        run: chmod +x bin/*
+
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
@@ -74,6 +77,9 @@ jobs:
       - name: Instalar dependências do Bundler
         run: bundle install --jobs 4 --retry 3
 
+      - name: Set permissions for bin scripts
+        run: chmod +x bin/*
+        
       - name: Run tests
         env:
           RAILS_ENV: test
