@@ -19,6 +19,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Verificar versão do Ruby
+        run: ruby --version
+
+      - name: Instalar dependências do Bundler
+        run: bundle install --jobs 4 --retry 3
+
       - name: Set permissions for Brakeman
         run: chmod +x bin/brakeman
 
@@ -37,18 +43,18 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Verificar versão do Ruby
+        run: ruby --version
+
+      - name: Instalar dependências do Bundler
+        run: bundle install --jobs 4 --retry 3
+
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
   test:
     runs-on: ubuntu-latest
 
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config
@@ -62,8 +68,13 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Verificar versão do Ruby
+        run: ruby --version
+
+      - name: Instalar dependências do Bundler
+        run: bundle install --jobs 4 --retry 3
+
       - name: Run tests
         env:
           RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
