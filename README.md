@@ -33,10 +33,9 @@ Este é o backend de um projeto de gerenciamento de tarefas inspirado no quadro 
 
 3. **Configure o banco de dados**
    
-   - Limpe o banco de dados atual, crie novamente e execute as migrações.
+   - Crie o banco de dados e execute as migrações.
      
    ```sh
-   rails db:drop
    rails db:create
    rails db:migrate
 
